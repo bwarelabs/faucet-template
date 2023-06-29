@@ -1,0 +1,16 @@
+#!/usr/bin/expect -f
+
+set timeout -1
+
+spawn npm login --scope=bwarelabs --registry=https://npm.pkg.github.com
+
+expect "Username: "
+send -- "$env(GITHUB_USER)\n"
+
+expect "Password: "
+send -- "$env(GITHUB_TOKEN)\n"
+
+expect "Email: (this IS public) "
+send -- "$env(GITHUB_EMAIL)\n"
+
+expect eof
